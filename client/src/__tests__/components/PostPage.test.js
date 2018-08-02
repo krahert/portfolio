@@ -125,7 +125,7 @@ describe('display of elements', () => {
 describe('interaction', () => {
   
   const updatedState = initialState.currentPost;
-  it('simulates adding a new comment, displays it and clears textarea', () => {
+  it('simulates adding a new comment and displaying it', () => {
     moxios.install();
 
     moxios.requests.mostRecent().respondWith({
@@ -145,8 +145,6 @@ describe('interaction', () => {
     element.getNode.value = 'New test comment';
     element.simulate('change', element);
 
-    // console.log(wrapped.find('textarea').getNode.value);
-
     updatedState.comments.push({
       _id: '5b4782208dee52408cc2c165',
       user: 'jane',
@@ -154,18 +152,16 @@ describe('interaction', () => {
       message: wrapped.find('textarea').getNode.value,
       dateCreated: '2018-07-12T16:30:24.204Z'
     });
-    
-    // moxios.stubRequest('/api/add_comment', {
-    //   status: 200,
-    //   response: updatedState
-    // });
 
-    //! ?????????
     wrapped.find('.comment-submit-button').simulate('click');
-    wrapped.update();
+    //! nu merge sa folosesc update()
+    wrapped.unmount();
+    wrapped.mount();
 
-    // console.log(wrapped.find('.comment-message').length);
-    
+    expect(wrapped.find('.comment-message').at(2).text()).toEqual('Comment #1');
+    expect(wrapped.find('.comment-message').at(0).text()).toEqual('Comment #2');
+    expect(wrapped.find('.comment-message').at(1).text()).toEqual('New test comment');
+
     wrapped.unmount();
     moxios.uninstall();
   });

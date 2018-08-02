@@ -1,45 +1,35 @@
+import nock from 'nock';
 import { fetchUser } from 'actions';
 import { FETCH_USER } from 'actions/types';
-import moxios from 'moxios';
+import configureStore from 'redux-mock-store';
+import reduxThunk from 'redux-thunk';
 
+//! TO DO
 describe('fetchUser', () => {
+  // beforeEach(() => {
+    
+  // });
+
+  // afterEach(() => {
   
-  // let mockResponse;
-  // let request;
+  // });
 
-  beforeEach(() => {
-    moxios.install();
-
+  it.skip('has the correct type of FETCH_USER', () => {
     
-    // mockResponse = () => {
-    //   return new Promise((resolve, reject) => {
-    //     moxios.requests.mostRecent().respondWith({
-    //       status: 200,
-    //       response: { username: 'eddie' }
-    //     }).then(resolve);
-    //   });
-    // };
-  });
+    // Redux-Mock-Store Config
+    const mockStore = configureStore([reduxThunk]);
+    const store = mockStore({});
 
-  afterEach(() => {
-    moxios.uninstall();
-  });
+    nock('/api/current_user', {}).get('/api/current_user').reply(200, {username: 'test'});
 
-  it('has the correct type of FETCH_USER', (done) => {
+    const expectedActions = [fetchUser()];
+
+    const dispatchedStore = store.dispatch(fetchUser());
     
-    // await mockResponse();
-    moxios.wait(() => {
-      
-      let request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 200,
-        response: { username: 'eddie' }
-      });
+    return dispatchedStore.then(() => {
+      console.log(store.getActions());
+    });
 
-      const action = fetchUser();
-      expect(action.type).toEqual('asdasdas');
-      console.log(action.type);
-      done();
     });
   });
 
@@ -47,4 +37,3 @@ describe('fetchUser', () => {
   //   const action = fetchUser();
   //   expect(action.payload.username).toEqual('eddie');
   // });
-});
