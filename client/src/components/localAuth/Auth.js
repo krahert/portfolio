@@ -39,7 +39,7 @@ class Auth extends Component {
             }
             onClick={() => this.setState({ showRegister: true })}
           >
-            Sign up
+            Sign Up
           </button>
         </div>
         {this.renderComponent()}
