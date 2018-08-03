@@ -6,8 +6,8 @@ describe('testing elapsedTime helper function', () => {
     expect(elapsedTime(date)).toEqual('a few seconds ago');
   });
 
-  // it('handles invalid dates', () => {
-  //   const date = 'invalid date';
-  //   expect(elapsedTime(date)).toEqual('Invalid date');
-  // });
+  it('handles invalid dates', () => {
+    const date = 'invalid date';
+    expect(elapsedTime(date)).toEqual(null);
+  });
 });

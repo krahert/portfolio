@@ -1,14 +1,13 @@
 import moment from 'moment';
-// moment().format();
 
 export default startTime => {
- 
-  // const dateFormat = moment(startTime).format("dddd, MMMM Do YYYY, h:mm:ss a") || 'invalid date';
 
-  // if (dateFormat !== 'Invalid date') {
+  const dateFormat = moment(startTime, moment.ISO_8601).isValid();
+  
+  if (dateFormat) {
     const result = moment(startTime).fromNow() || 'invalid date';
     return result;
-  // }
+  }
   
-  // return 'invalid date';
+  return null;
 };
