@@ -10,8 +10,8 @@ class Header extends Component {
       case false:
         return (
           <div>
-            <Link className="button" to="/login">Log In</Link>
-            <a className="button" href="/auth/google">Sign In With Google</a>
+            <Link className="button" id="local-login" to="/login">Log In</Link>
+            <a className="button" id="google-login" href="/auth/google">Sign In With Google</a>
           </div>
         );
       default:
@@ -21,7 +21,7 @@ class Header extends Component {
               {this.props.auth.username}
             </Link>
             {/* <Link className="button" to="/my_posts">My Posts</Link> */}
-            <a className="button" href="/api/logout">Logout</a>
+            <a className="button" id="logout" href="/api/logout">Logout</a>
           </div>
         );
     }
