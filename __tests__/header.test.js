@@ -29,15 +29,15 @@ test('user can login through local strategy', async () => {
 	const url = await page.url();
 
 	expect(url).toMatch(/login/);
-	await page.$eval('input[name=email]', el => el.value = 'test@gmail.com');
-	await page.$eval('input[name=password]', el => el.value = 'test');
-	// await page.click('.auth-button');
-	const xxx = await page.$eval('input[name=email]').value;
-	console.log(xxx);
+	await page.type('input[name=email]', 'test@gmail.com', {delay: 20});
+	await page.type('input[name=password]', 'test', {delay: 20});
+	await page.click('.auth-button');
+	// const xxx = await page.$eval('input[name=email]').outerHTML;
+	// console.log(xxx);
 
-	// await page.waitFor('a[href="/api/logout"]');
-	// const text = await page.getContentsOf('a[href="/api/logout"]');
-  // expect(text).toEqual('Logout');
+	await page.waitFor('a[href="/api/logout"]');
+	const text = await page.getContentsOf('a[href="/api/logout"]');
+  expect(text).toEqual('Logout');
 });
 
 test.skip('when signed in, shows logout button', async () => {
