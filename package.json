@@ -11,7 +11,7 @@
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "unit-test": "npm run test --prefix client",
-    "test": "jest ./__tests__/header.test.js"
+    "test": "jest ./__tests__/posts.test.js"
   },
   "author": "Eduard Nedelcescu",
   "license": "ISC",

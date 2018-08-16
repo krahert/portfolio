@@ -37,7 +37,7 @@ class AllPosts extends Component {
                 </p>
               </div>
               <p className="post-title">
-                <Link to={`/post/${post._id}`}>{
+                <Link to={`/post/${post._id}`} id={post.title}>{
                   post.title.length > 40
                     ? post.title.substring(0, 40) + '...'
                     : post.title
