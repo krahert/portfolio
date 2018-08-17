@@ -4,14 +4,17 @@
   "description": "API Server for Portfolio",
   "main": "index.js",
   "jest": {
-    "setupTestFrameworkScriptFile": "./__tests__/setup.js"
+    "setupTestFrameworkScriptFile": "./__intTests__/setup.js",
+    "collectCoverageFrom": ["./__intTests__"]
+
   },
   "scripts": {
     "server": "nodemon index.js --ignore tests",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "unit-test": "npm run test --prefix client",
-    "test": "jest ./__tests__/posts.test.js"
+    "int-test": "jest __intTests__/ --forceExit",
+    "test": "npm run unit-test && npm run int-test"
   },
   "author": "Eduard Nedelcescu",
   "license": "ISC",
