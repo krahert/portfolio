@@ -39,7 +39,7 @@ module.exports = app => {
       if (req.user) {
         res.send(hideUserData(req.user));
       } else {
-        res.send(req.user);
+        res.status(204).send(req.user);
       }
     }
   );

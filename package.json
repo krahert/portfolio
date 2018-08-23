@@ -5,8 +5,9 @@
   "main": "index.js",
   "jest": {
     "setupTestFrameworkScriptFile": "./__intTests__/setup.js",
-    "collectCoverageFrom": ["./__intTests__"]
-
+    "collectCoverageFrom": [
+      "./__intTests__"
+    ]
   },
   "scripts": {
     "server": "nodemon index.js --ignore tests",
@@ -14,6 +15,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "unit-test": "npm run test --prefix client",
     "int-test": "jest __intTests__/ --forceExit",
+    "server-test": "mocha __unitTests__/routes.test.js --exit",
     "test": "npm run unit-test && npm run int-test"
   },
   "author": "Eduard Nedelcescu",
@@ -38,5 +40,14 @@
     "redis": "^2.8.0",
     "safe-buffer": "^5.1.2",
     "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^5.2.0",
+    "rewire": "^4.0.1",
+    "sinon": "^6.1.5",
+    "sinon-chai": "^3.2.0",
+    "supertest": "^3.1.0"
   }
 }
