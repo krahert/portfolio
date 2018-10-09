@@ -7,7 +7,7 @@ React, Redux, Express, MongoDB, Redis, Data Caching, Unit Testing, Integration T
 
 - Am folosit CreateReactApp, care mi-a generat proiectul si mi-a rezolvat si problema de CORS care sa ii permita la frontend sa comunice cu backend. Porturi diferite. Problema care poate sa apara pentru Google OAuth callback link.
 
-- Aplicatia suporta local authentication si Google OAuth.
+- Aplicatia suporta local authentication (email + password) si Google OAuth.
 
 - Pentru AJAX requests am folosit Axios, deoarece este usor sa il folosesc impreuna cu Redux-Thunk middleware si in cazul in care vreau sa fac SSR, Axios permite sa ii folosesc diferite instantieri, ca sa pot sa separ SSR de client rendering.
 
