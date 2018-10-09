@@ -15,7 +15,7 @@ React, Redux, Express, MongoDB, Redis, Data Caching, Unit Testing, Integration T
 
 ## Unit testing
 
-- deoarece am folosit o aplicatie de React care se va conecta la un API endpoint si Redux, au aparut diferite probleme:
+- Deoarece am folosit o aplicatie de React care se va conecta la un API endpoint si Redux, au aparut diferite probleme:
 
 - Deoarece am multe componente de tip container care sunt conectate la Redux, a trebuit sa separ Redux Store-ul de Index Component si sa il pun in Root component care va primi ca arguments componenta careia vreau sa ii dau embed pentru a avea acces la Redux Store si mai primeste un alt argument pentru default state pentru Redux Store.
 
@@ -54,10 +54,8 @@ De fiecare data cand se face o postare noua, va fi curatat cache-ul din Redis. C
 
 - Unit Testing-ul pentru NodeJS, a fost facut cu Mocha + Chai + Sinon + SuperTest. Unde am luat fiecare route in parte si am verificat ce date returneaza si cum reactioneaza la diferite requests. Inclusiv routes pentru autentificare si cum sunt trimisi cookies. Au mai fost testate si routes pentru postarea de posturi si comments.
 
-- Integration Testing a fost realizat cu Jest + Puppeteer, unde am verificat toate features ale aplicatiei intr-o instanta automatizata de Chromium. A trebuit sa imi creez manual cookies pentru sesiune si semnatura, pentru a evita autentificarea la fiecare test. Pentru a face testarea mai usoara, mi-am creat propriile metode custom pentru metodele de puppeteer (all-in-one prin Proxy de JavaScript), login(), get, post si getContentsOf(). Adica o sa am tot ce am nevoie intr-un obiect bazat pe Page din Puppeteer.
-
-Continous Integration
-- Se va folosi de unit tests si/sau de integration testing pentru a automatiza deploy-ul aplicatiei pe hosting server. In cazul meu am folosit TravisCI impreuna cu Heroku, deoarece sunt gratuite si usor de implementat. O tehnica similara poate fi folosita si pentru continous delivery.
+## Integration Testing
+A fost realizat cu Jest + Puppeteer, unde am verificat toate features ale aplicatiei intr-o instanta automatizata de Chromium. A trebuit sa imi creez manual cookies pentru sesiune si semnatura, pentru a evita autentificarea la fiecare test. Pentru a face testarea mai usoara, mi-am creat propriile metode custom pentru metodele de puppeteer (all-in-one prin Proxy de JavaScript), login(), get, post si getContentsOf(). Adica o sa am tot ce am nevoie intr-un obiect bazat pe Page din Puppeteer.
 
 # TO DO:
 
