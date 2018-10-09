@@ -1,7 +1,7 @@
 # portfolio
 React, Redux, Express, MongoDB, Redis, Data Caching, Unit Testing, Integration Testing
 
-@REACT + REDUX
+## REACT + REDUX
 - Este un simplu blog care contine boards, postari si comentarii. Pe viitor vreau sa implementez imagini pentru postari si comentarii, similar cu image boards unde userii isi vor urca propriile imagini precum reddit, lainchan, arisuchan, etc. Imaginile vreau sa le stochez intr-un datastore precum Amazon S3, deoarece este mult mai ieftin si mult mai scalabil decat sa le stochez local pe VPS sau intr-o baza de date. 
 
 - Exista probleme de scalabilitate, anume faptul ca stochez toate comentariile in MongoDb, intr-un singur document pentru postul respectiv si marimea maxima permisa pentru acesta este de 4MB. Va trebui sa separ comentariile intr-un array de subdocumente.
@@ -14,7 +14,9 @@ React, Redux, Express, MongoDB, Redis, Data Caching, Unit Testing, Integration T
 
 - Pentru forms am folosit ReduxForm deoarece imi este mai usor sa validez campurile si sa folosesc direct Redux Store pentru a accesa datele din forms.
 
-@Unit testing - deoarece am folosit o aplicatie de React care se va conecta la un API endpoint si Redux, au aparut diferite probleme:
+## Unit testing
+
+- deoarece am folosit o aplicatie de React care se va conecta la un API endpoint si Redux, au aparut diferite probleme:
 
 - Deoarece am multe componente de tip container care sunt conectate la Redux, a trebuit sa separ Redux Store-ul de Index Component si sa il pun in Root component care va primi ca arguments componenta careia vreau sa ii dau embed pentru a avea acces la Redux Store si mai primeste un alt argument pentru default state pentru Redux Store.
 
@@ -29,7 +31,7 @@ React, Redux, Express, MongoDB, Redis, Data Caching, Unit Testing, Integration T
 
 ======================
 
-@NODE + EXPRESS + REDIS
+## NODE + EXPRESS + REDIS
 
 - Pentru API Server am folosit Node + Express, ca baza de date am folosit MongoDB impreuna cu Mongoose si MLab. Am mai folosit o instanta locala de Redis pentru a face data caching si pentru a memora si limita numarul de requests facute de fiecare IP in parte.
 
@@ -62,9 +64,9 @@ Continous Integration
 
 ======================
 
-TO DO:
+# TO DO:
 
-1. Optimizare Backend
+### 1. Optimizare Backend
 - Este o idee sa folosesc clustering pentru a rula simultan mai multe instante pentru API Server, pe o singura masina, numarul la instante va depinde de numarul de core-uri(thread-uri) logice ale procesorului, acestea fiind x2 daca procesorul suporta hyperthreading. Ca aplicatie, pot folosi PM2 care imi va face acest lucru automat, unde o sa am un fel de load-balancer local pe masina, care se va uita la health-ul diferitelor instante ale serverului si isi va da seama daca este nevoie sa porneasca noi instante sau sa le reporneasca pe cele cu probleme. Testarile le fac cu Apache Benchmark, valabil pe Linux/MacOS.
 
 - O alternativa la clustering, ar fi sa folosesc worker-threads pentru NodeJS, ca sa scot din anumite procese din Event Loop si sa le bag manual in ThreadPool-ul din Libuv.
@@ -75,7 +77,7 @@ Pot folosi modulul 'webworker-threads', dar conceptul este oarecum ceva nou si c
 
 - Atunci cand vine vorba de scalabilitatea serverului, mai sunt importante si alte servicii precum storage-ul si costul acestuia. Daca am un volum mare de date impreuna cu multi useri, este posibil sa am nevoie sa folosesc un server de DataStore in loc sa stochez totul pe HDD-ul unui VPS. Probleme similare pot sa apara si daca imi stochez date precum imagini, direct in baza de date. Un avantaj foarte mare este pretul foarte mic pentru stocarea datelor si viteza de download a datelor. Un exemplu de astfel de serviciu este Amazon S3, mai ales cand vine vorba de image-caching. Deoarece pentru ca un user sa isi uploadeze ceva, API Serverul meu va primi un PRESIGNED URL pe care il va trimite userului ca sa isi faca upload direct pe DataStore, dar pentru un file specific cu un anumit nume si un anumit format prestabilit. Eu voi stoca doar url-ul in baza de date. O posibila problema care poate sa apara, este configurarea proasta a politicilor din Bucket-ului din AWS sau o vulnerabilitate in API Server, care vor permite adversarilor sa stocheze ce date vor si acest lucru poate fi riscant din punct de vedere al pretului sau chiar legal. La fel este important ca atunci cand lucrez cu formate media, sa le standardizez folosing servicii precum TinyPNG.
 
-2. Server-side Rendering pentru  React + NodeJS
+### 2. Server-side Rendering pentru  React + NodeJS
 
 - SSR se refera la faptul ca vreau ca aplicatia de pe frontend sa fie incarcata instant cu o parte din datele necesare, ca userul sa vada o parte randata din pagina in primele secunde. Acest lucru inseamna mai exact ca va trebui sa ii trimit clientului ca response prima data, HTML-ul aplicatiei de React care a fost prerandata pe server si peste acel HTML, voi arunca bundle-ul de JS care este trimis ulterior catre Browser. Pe langa HTML-ul trimis, atunci cand trimit JS-ul, voi trimite inclusiv datele din Redux Store-ul folosit de SSR. Acest lucreu va permite site-ului sa se incarce partial astfel incat userul sa poata vedea un content din primele secunde.
 
