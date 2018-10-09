@@ -1,4 +1,3 @@
-# portfolio
 React, Redux, Express, MongoDB, Redis, Data Caching, Unit Testing, Integration Testing
 
 ## REACT + REDUX
@@ -28,8 +27,6 @@ React, Redux, Express, MongoDB, Redis, Data Caching, Unit Testing, Integration T
 
 - Partea de securitate la aplicatia de React este verificata dupa ghidul OWASP si nu exista probleme de XSS deoarece este un feature al React-ului sa fie rezistent impotriva acestora. Anume React va inlocui automat anumite caractere speciale cu echivalentul UNICODE al acestora. Dar exista vulnerabilitati precum accesarea datelor dintr-un DB, unde acestea sunt luate ca atare sau folosirea de anchor tags de tip javascript. ideea este ca majoritatea problemelor vor veni de pe backend si fiind o aplicatie in browser-ul adversarului, este posibil ca aceasta sa fie hackuita, chiar daca React foloseste um Virtual DOM separat de cel al browserului.
 - DDOS si anti-spam au fost implementate din backend.
-
-======================
 
 ## NODE + EXPRESS + REDIS
 
@@ -61,8 +58,6 @@ De fiecare data cand se face o postare noua, va fi curatat cache-ul din Redis. C
 
 Continous Integration
 - Se va folosi de unit tests si/sau de integration testing pentru a automatiza deploy-ul aplicatiei pe hosting server. In cazul meu am folosit TravisCI impreuna cu Heroku, deoarece sunt gratuite si usor de implementat. O tehnica similara poate fi folosita si pentru continous delivery.
-
-======================
 
 # TO DO:
 
